@@ -72,53 +72,64 @@ APP.activateTag = function(event) {
 	var visual = event.target;
 	while(visual.tagName != "LI")
 		visual = visual.parentElement;
-		
-	for(t in APP.cameraCategoriesType)
-	{
-		if(APP.cameraCategoriesType[t].visual === visual)
-		{
-			if(APP.cameraCategoriesType[t].active)
-			{
+	var t,i;
+
+	for(t in APP.cameraCategoriesType) {
+		if(APP.cameraCategoriesType[t].visual === visual) {
+			if(APP.cameraCategoriesType[t].active) {
 				APP.cameraCategoriesType[t].active = false;
 				visual.className = "tag";
+				//console.log("Here is " + APP.cameraCategoriesType[t].name);
+				APP.removeMetadataListType(APP.cameraCategoriesType[t].name);
 			}
-			else
-			{
+			else {
+				for( i in APP.cameraCategoriesManufacturer ) { 
+					if( APP.cameraCategoriesManufacturer[i].active ) {
+						 APP.cameraCategoriesManufacturer[i].visual.className = "tag";
+						 APP.removeMetadataListManufacturer(APP.cameraCategoriesManufacturer[i].name);
+					}
+				}
 				APP.cameraCategoriesType[t].active = true;
 				visual.className = "tag-is-actived";
-				// get and render games
-				//getMetadata(APP.cameraCategories[t].best_seller_list, "getAndRenderCameras");
-				APP.getMetadataList(APP.cameraCategoriesType[t].name);
+				APP.getMetadataListType(APP.cameraCategoriesType[t].name);
+				// APP.removeMetadataListType(APP.cameraCategoriesType[t].name);
+				// console.log(APP.cameras);
 			}
 		}
 	}
-	for(t in APP.cameraCategoriesManufacturer)
-	{
-		if(APP.cameraCategoriesManufacturer[t].visual === visual)
-		{
-			if(APP.cameraCategoriesManufacturer[t].active)
-			{
+	for(t in APP.cameraCategoriesManufacturer) {
+		if(APP.cameraCategoriesManufacturer[t].visual === visual) {
+			if(APP.cameraCategoriesManufacturer[t].active) {
 				APP.cameraCategoriesManufacturer[t].active = false;
 				visual.className = "tag";
+				APP.removeMetadataListManufacturer(APP.cameraCategoriesManufacturer[t].name);
 			}
-			else
-			{
+			else {
+				for( i in APP.cameraCategoriesType ) { 
+					if( APP.cameraCategoriesType[i].active ) {
+						 APP.cameraCategoriesType[i].visual.className = "tag";
+						 APP.removeMetadataListType(APP.cameraCategoriesType[i].name);
+					}
+				}
 				APP.cameraCategoriesManufacturer[t].active = true;
 				visual.className = "tag-is-actived";
-				// get and render games
-				//getMetadata(APP.cameraCategories[t].best_seller_list, "getAndRenderCameras");
+				APP.getMetadataListManufacturer(APP.cameraCategoriesManufacturer[t].name);
 			}
 		}
 	}
+	console.log(APP.cameras);
 }
 
 
-function Camera(cameraMetadata, name)
-{
+APP.Camera = function (name, key, type, manufacturer, imgUrl) {
 	this.name = name;
+	this.key = key;
+	this.type = type;
+	this.manufacturer = manufacturer;
 	this.amazon = [];
 	this.newegg = [];
 	this.bestbuy = [];
+	this.img = imgUrl;
 	//this.title = cameraMetadata.title;
 	//this.location = location;
 
@@ -131,13 +142,13 @@ function Camera(cameraMetadata, name)
 	//this.price = "none";
 }
 
-Camera.prototype.getFullMetadata = function()
+APP.Camera.prototype.getFullMetadata = function()
 {
 	APP.cameraQueue.push(this);
 	getMetadata(this.location, "updateCamera");
 }
 
-Camera.prototype.updateCamera = function(cameraMetadata)
+APP.Camera.prototype.updateCamera = function(cameraMetadata)
 {
 	var img = document.createElement('img');
 		img.src = cameraMetadata.image.location;
@@ -169,7 +180,7 @@ Camera.prototype.updateCamera = function(cameraMetadata)
 	this.visual.appendChild(this.pieContainer);
 }
 
-Camera.prototype.createGridVisual = function()
+APP.Camera.prototype.createGridVisual = function()
 {	
 	var vis = document.createElement('div');
 		vis.className = "cameraVisual";	
@@ -189,7 +200,7 @@ Camera.prototype.createGridVisual = function()
 	return vis;	
 }
 
-Camera.prototype.gridify = function()
+APP.Camera.prototype.gridify = function()
 {
 	this.visual.style.width = "260px";
 	this.visual.style.height = "352px";
@@ -201,7 +212,7 @@ Camera.prototype.gridify = function()
 	}
 }
 
-Camera.prototype.listify = function()
+APP.Camera.prototype.listify = function()
 {
 	this.visual.style.width = "auto";
 	this.visual.style.height = "auto";
@@ -213,7 +224,7 @@ Camera.prototype.listify = function()
 	}
 }
 
-Camera.prototype.getVowelPercentagePieChart = function()
+APP.Camera.prototype.getVowelPercentagePieChart = function()
 {
 	var canvas = document.createElement('canvas');
 		canvas.width = 220;
@@ -254,7 +265,7 @@ Camera.prototype.getVowelPercentagePieChart = function()
 
 // count the vowels
 // a, e, i, o, u and sometimes y
-Camera.prototype.countVowels = function(string)
+APP.Camera.prototype.countVowels = function(string)
 {	
 	var vowelCount = 0;
 	

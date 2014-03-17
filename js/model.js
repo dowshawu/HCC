@@ -44,7 +44,7 @@ APP.cameraCategoriesManufacturer = [
 ];
 
 
-APP.cameraListDSLR = [
+APP.cameraList = [
 	{
 		name: "Canon T3i",
 		title: "Canon EOS Rebel T3i",
@@ -209,10 +209,8 @@ APP.cameraListDSLR = [
 		amazonUrl: "http://www.amazon.com/Nikon-D610-FX-Format-Digital-Camera/dp/B00FOTF8M2/ref=zg_bs_3017941_24",
 		neweggUrl: "http://www.newegg.com/Product/Product.aspx?Item=9SIA1J214X7439",
 		bestbuyUrl: "http://www.bestbuy.com/site/d610-dslr-camera-body-only/2061108.p?id=1219068640211&skuId=2061108&st=Nikon%20D610%20&cp=1&lp=1"
-	}
-];
-
-APP.cameraListCompack = [
+	},
+//APP.cameraListCompack = [
 	{
 		name: "Sony NEX-3NL/B",
 		title: "Sony NEX-3NL/B",
@@ -255,7 +253,7 @@ APP.cameraListCompack = [
 		img: "http://3.bp.blogspot.com/-Pro3HPPk1Ic/UORv1_YfQFI/AAAAAAAAGmQ/ToxK5wstv6E/s1600/sony_nex-6_front.jpg",
 		amazonUrl: "http://www.amazon.com/Sony-Compact-Interchangeable-Digital-16-50mm/dp/B0096W1OKS/ref=zg_bs_3109924011_6",
 		neweggUrl: "http://www.newegg.com/Product/Product.aspx?Item=9SIA1Y31958543",
-		bestbuyUrl: "http://www.bestbuy.com/site/sony-alpha-nex-6l-16-1mp-camera-with-e-pz-16-50mm-oss-lens-55-210mm-lens/9999218700050007.p?id=pcmprd217600050007&skuId=9999218700050007&st=Sony%20NEX-6L&lp=1&cp=1"
+		bestbuyUrl: "http://www.bestbuy.com/site/alpha-nex-6-16-1-megapixel-digital-compact-system-camera-black/1308093947.p?id=mp1308093947&skuId=1308093947&st=Sony%20Alpha%20NEX-6&cp=1&lp=2#tab=overview"
 	},
 	{
 		name: "Olympus E-PM2",
