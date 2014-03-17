@@ -1,4 +1,4 @@
-var APP = APP || {}
+var APP = APP || {};
 
 APP.cameraCategories = [
 	{
@@ -27,7 +27,7 @@ APP.cameraCategoriesManufacturer = [
 		name: "Fujifilm"
 	},
 	{
-		name: "Nikno"
+		name: "Nikon"
 	},
 	{
 		name: "Olympus"

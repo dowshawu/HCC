@@ -1,11 +1,10 @@
-var APP = APP || {}
+var APP = APP || {};
 
 APP.semanticServiceUrl = "http://ecology-service.cse.tamu.edu/BigSemanticsService/";
 
 APP.mainContainer;
 APP.cameras = [];
 APP.cameraQueue = [];
-APP.passingObject;
 
 var GAME_VISUAL_WIDTH = 260;
 var GAME_VISUAL_HEIGHT = 352;
@@ -15,15 +14,13 @@ APP.setup = function () {
 	// init cameras list
 	APP.cameras = [];
 	APP.cameraQueue = [];
-	
 	APP.mainContainer = document.getElementById("camera-container");
-	
 	APP.displayCategories();
-	
 	
 }
 
 APP.displayCategories = function () {
+	
 	var tagListType = document.getElementById("tag-list-type");
 	var t;
 
@@ -73,7 +70,7 @@ APP.activateTag = function(event) {
 	while(visual.tagName != "LI")
 		visual = visual.parentElement;
 	var t,i;
-
+	//console.log("visual = " + visual);
 	for(t in APP.cameraCategoriesType) {
 		if(APP.cameraCategoriesType[t].visual === visual) {
 			if(APP.cameraCategoriesType[t].active) {
@@ -117,7 +114,22 @@ APP.activateTag = function(event) {
 			}
 		}
 	}
-	console.log(APP.cameras);
+	//console.log(APP.cameras[0].amazon);
+	var x 
+	var myTime = setTimeout( function () { 
+		for( i in APP.cameras ) {
+			//console.log(APP.cameras[i].amazon);
+			//console.log(APP.cameras[i].bestbuy);
+			//console.log(APP.cameras[i].newegg);
+			APP.cameras[i].setGridVisual();
+		} },1000);
+
+
+	// console.log(APP.cameras);
+	//console.log(APP.cameras[0].amazon);
+	//APP.cameras[i].visual = APP.cameras[i].createGridVisual();
+	 
+
 }
 
 
@@ -130,22 +142,24 @@ APP.Camera = function (name, key, type, manufacturer, imgUrl) {
 	this.newegg = [];
 	this.bestbuy = [];
 	this.img = imgUrl;
+
+
 	//this.title = cameraMetadata.title;
 	//this.location = location;
 
 	//this.overallRating = cameraMetadata.overall_rating;
-	//this.visual = this.createGridVisual();   /**/
-	
-	//this.getFullMetadata(); /**/
+
+	this.visual = null;   /**/
 		
 	//this.rating = "none";
 	//this.price = "none";
 }
 
-APP.Camera.prototype.getFullMetadata = function()
-{
-	APP.cameraQueue.push(this);
-	getMetadata(this.location, "updateCamera");
+
+APP.Camera.prototype.setGridVisual = function () {
+	
+	this.visual = this.createGridVisual();
+	//console.log(APP.cameras);
 }
 
 APP.Camera.prototype.updateCamera = function(cameraMetadata)
@@ -182,18 +196,21 @@ APP.Camera.prototype.updateCamera = function(cameraMetadata)
 
 APP.Camera.prototype.createGridVisual = function()
 {	
-	var vis = document.createElement('div');
-		vis.className = "cameraVisual";	
+	var vis = document.createElement("div");
+		vis.className = "camera-grid";	
 		//vis.onmouseenter = function() {}
 
+	var img = document.createElement("img");
+		img.src = this.img;
+
 	var title = document.createElement('h1');
-		title.textContent = this.title;
+		title.textContent = this.name;
 
 	var review = document.createElement('p');
-		review.textContent = this.overallRating;
-		
+		review.textContent = "Amazon Rating " + this.amazon.overall_rating;
+		console.log("rating = " + this.amazon.overall_rating);
 	
-	
+	vis.appendChild(img);
 	vis.appendChild(title);
 	vis.appendChild(review);
 			
@@ -202,8 +219,6 @@ APP.Camera.prototype.createGridVisual = function()
 
 APP.Camera.prototype.gridify = function()
 {
-	this.visual.style.width = "260px";
-	this.visual.style.height = "352px";
 	
 	if(this.miceContainer)
 	{

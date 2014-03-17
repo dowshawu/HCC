@@ -133,6 +133,29 @@ p {
 
 /* Body container */
 
+.camera-grid {
+	width: 260px;
+	height: 260px;
+	margin: 15px 15px 15px 15px;
+	border-radius: 4px;
+	border: 1px solid rgba(0,0,0,0.3);
+	padding: 8px;
+	overflow: hidden;
+	box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.5);
+	-webkit-transition: all 1s
+}
+
+.camera-grid h1 {
+	font-size: 16px;
+	white-space: nowrap;
+	text-align: left;
+}
+
+.camera-grid img {
+	max-width: 100%;
+	max-height: 100%;
+	vertical-align: top;
+}
 
 
 
