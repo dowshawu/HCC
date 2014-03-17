@@ -2,9 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Camera Choose Me</title>
 	<link rel="stylesheet" type="text/css" href="css/reset.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css" >
+	<link rel="stylesheet" type="text/css" href="css/myMICE.css" >
+	
+
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript" src="js/view.js"></script>
+	<!-- // <script type="text/javascript" src="js/controller.js"></script> -->
+	<script type="text/javascript" src="js/model.js"></script>
+	
+	
+	<script type="text/javascript" src="http://ecologylab.net/research/bigsemantics/interactiveSemantics/mice.js"></script>
+	
+	<script type="text/javascript" src="http://ecologylab.net/research/bigsemantics/simpl/simplDeserializer.js"></script>
+	<script type="text/javascript" src="http://ecologylab.net/research/bigsemantics/simpl/simplFieldTypes.js"></script>
+	<script type="text/javascript" src="http://ecologylab.net/research/bigsemantics/simpl/simplGraphCollapse.js"></script>
+	<script type="text/javascript" src="http://ecologylab.net/research/bigsemantics/simpl/simplGraphExpand.js"></script>
+	
 </head>
 <body>
 	
@@ -16,20 +33,40 @@
         </ul>
     </div>
 
-	<div class="article">
+	<div class="page-container">
 		<div class="head-container">
 			<div class="nav-container">
 				<ul class="nav">
-					<li class="item"><a href="#">Home</a></li>
-					<li class="item"><a href="#">Find a Camera</a></li>
-					<li class="item"><a href="#">Find a Deal</a></li>
+					<li class="nav-item"><a href="#">Home</a></li>
+					<li class="nav-item"><a href="#">Find a Camera</a></li>
+					<li class="nav-item"><a href="#">Find a Deal</a></li>
 				</ul>
 			</div>
+			<div class="categories-container">
+				
+				<div class="list-type-container list-container">
+					<ul id="tag-list-type" class="tag-list">Types</ul>
+				</div>
+				<div class="list-manufacturer-container list-container">	
+					<ul id="tag-list-manufacturer" class="tag-list">Manufacturers</ul>
+				</div>
+			</div>
 		</div>
-        <h1>Revealing CSS3 Menu</h1>
-        <p>body text</p>
+		
+		<div class="content-container">
+			
+        	<h1>Revealing CSS3 Menu</h1>
+
+        	<div id="camera-container">
+        		<div id=""
+        	</div>
+    	</div>
 
  	</div>
+ 	<script>
+			APP.setup();
+	</script>
+	
 
 
 </body>
