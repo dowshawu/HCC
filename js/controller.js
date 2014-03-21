@@ -1,23 +1,29 @@
 var APP = APP || {};
 
+APP.loadingMetadata = function () {
 
+	var t,i;
 
+	for( t in APP.cameraList ) {
 
+		var camera = new APP.Camera(APP.cameraList[t].name, APP.cameraList[t].key, APP.cameraList[t].type, APP.cameraList[t].manufacturer, APP.cameraList[t].img);
+		// console.log( APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallback" ) );
+		APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallback");
+		APP.getMetadata(APP.cameraList[t].neweggUrl, "APP.getCameraMetatdataCallback");
+		APP.getMetadata(APP.cameraList[t].bestbuyUrl, "APP.getCameraMetatdataCallback");
 
-
-
-
-
-// function clearTags(event)
-// {
-// 	for(t in APP.cameraCategories)
-// 	{
-// 		APP.cameraCategories[t].active = false;
-// 		APP.cameraCategories[t].visual.style.background = "none";
-// 	}
-	
-// 	rearrangeGamesBest();
-// }
+		APP.cameras.push(camera);
+	}
+	var x 
+	var myTime = setTimeout( function () { 
+		for( i in APP.cameras ) {
+			//console.log(APP.cameras[i].amazon);
+			//console.log(APP.cameras[i].bestbuy);
+			//console.log(APP.cameras[i].newegg);
+		} 
+		APP.display(APP.cameras);
+	},3000);
+}
 
 function checkForFailedLoad()
 {
@@ -88,33 +94,17 @@ function redisplayCameras(camerasList)
 
 // }
 
-APP.displayAsGrid = function (camerasLits) {
+APP.display = function (camerasList) {
 
-	this.displayType = "grid";
+	// this.displayType = "grid";
 	var i;
 
-	for(i in camerasLits) {
-		camerasLits[i].createGridVisual();
-		camerasLits[i].gridify();
+	while (APP.mainContainer.firstChild) {
+    	APP.mainContainer.removeChild(APP.mainContainer.firstChild);
 	}
-}
-
-function displayAsList(camerasLits)
-{
-	this.displayType = "list";
-
-	var r = 0;
-	for(i in camerasLits)
-	{
-		var x = 12;
-		var y = 36 + (GAME_VISUAL_HEIGHT + PADDING) * r;
-		
-		camerasLits[i].visual.style.top = y + 'px';
-		camerasLits[i].visual.style.left = x + 'px';
-		
-		camerasLits[i].listify();
-		r++;	
-	}	
+	for(i in camerasList) {
+		APP.mainContainer.appendChild(camerasList[i].gridVisual);
+	}
 }
 
 function updateCamera(cameraMetadata)
@@ -155,186 +145,56 @@ function updateCamera(cameraMetadata)
 // 	redisplayGames(results);
 // }
 
-APP.deferredAmazon = $.Deferred();
-APP.deferredNewegg = $.Deferred();
-APP.deferredBestbuy = $.Deferred();
-
-
-
 // helpers
 
 
-
-APP.getMetadataListType = function (type) {
-
-	var t,i;
-	var flag = -1;
-
-	for( t in APP.cameraList ) {
-			
-		if(APP.cameraList[t].type === type) {
-
-			//console.log(APP.cameraList[t].name );
-			// APP.camera[t] = new Camera(APP.cameraList.name);
-			for( i in APP.cameras) {
-				if( APP.cameras[i].name == APP.cameraList[t].name ) {
-					flag = 1;
-				}
-			}
-			if( flag < 0 ) {
-
-				var camera = new APP.Camera(APP.cameraList[t].name, APP.cameraList[t].key, APP.cameraList[t].type, APP.cameraList[t].manufacturer, APP.cameraList[t].img);
-				// console.log( APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallback" ) );
-				APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallbackAmazon");
-				APP.getMetadata(APP.cameraList[t].neweggUrl, "APP.getCameraMetatdataCallbackNewegg");
-				APP.getMetadata(APP.cameraList[t].bestbuyUrl, "APP.getCameraMetatdataCallbackBestbuy");
-
-				APP.cameras.push(camera);
-			}
-		}
-	}
-}
-
-
-
-APP.removeMetadataListType = function (type) {
-	var t;
-	//console.log(APP.cameras);
-	for( t = APP.cameras.length-1 ; t >= 0 ; t-- ) {
-		//console.log( APP.cameras[t]);
-		if( APP.cameras[t].type === type) {
-			APP.cameras.splice(t,1);
-		}
-	}
-	//console.log(APP.cameras);
-}
-
-APP.getMetadataListManufacturer = function (manufacturer) {
-
-	var t,i;
-	var flag = -1;
-
-	for( t in APP.cameraList ) {
-			
-		if(APP.cameraList[t].manufacturer === manufacturer) {
-
-			//console.log(APP.cameraList[t].getOwnPropertyNames );
-			// APP.camera[] = new Camera(APP.cameraList.name);)
-			for( i in APP.cameras) {
-				if( APP.cameras[i].name == APP.cameraList[t].name ) {
-					flag = 1;
-				}
-			}
-			if( flag < 0 ) {
-				//console.log("test");
-				var camera = new APP.Camera(APP.cameraList[t].name, APP.cameraList[t].key, APP.cameraList[t].type, APP.cameraList[t].manufacturer, APP.cameraList[t].img);
-				// console.log( APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallback" ) );
-				APP.getMetadata(APP.cameraList[t].amazonUrl, "APP.getCameraMetatdataCallbackAmazon");
-				APP.getMetadata(APP.cameraList[t].neweggUrl, "APP.getCameraMetatdataCallbackNewegg");
-				APP.getMetadata(APP.cameraList[t].bestbuyUrl, "APP.getCameraMetatdataCallbackBestbuy");
-
-				APP.cameras.push(camera);
-			}
-		}
-	}
-}
-
-
-APP.removeMetadataListManufacturer = function (manufacturer) {
-	var t;
-	//console.log(APP.cameras);
-	for( t = APP.cameras.length-1 ; t >= 0 ; t-- ) {
-		//console.log( APP.cameras[t]);
-		if( APP.cameras[t].manufacturer === manufacturer) {
-			APP.cameras.splice(t,1);
-		}
-	}
-	//console.log(APP.cameras);
-}
-
-APP.getCameraMetatdataCallbackAmazon = function (cameraMetadata) {
+APP.getCameraMetatdataCallback = function (cameraMetadata) {
 
 	var str;
 	var i,j,k;
 	//console.log(cameraMetadata);
 	// console.log("got amazon product");
-	if( cameraMetadata !== undefined ) {
+	if( cameraMetadata.hasOwnProperty("amazon_product")  ) {
 		str = cameraMetadata.amazon_product.title;
-	}
-	//console.log(str);
-	//var res = str.split(" ");
-	for( j in APP.cameraList ) {
-		if( str.search(APP.cameraList[j].key) >= 0 ) {
-			//console.log("amazon got it!");
-			for( k in APP.cameras ) {
-				//console.log(APP.cameras[k]);
-				if( APP.cameraList[j].key == APP.cameras[k].key ) {
-					//console.log(APP.cameras[k].name + " got it!");
-					//APP.cameras[k].amazon = cameraMetadata.amazon_product;
-					// APP.cameras[k].amazon = cameraMetadata;
-					// console.log("cameras[" + k + "] = " + APP.cameras[k].amazon);
-					APP.cameras[k].amazon = JSON.parse(JSON.stringify(cameraMetadata.amazon_product));
-					break;
+		//console.log(str);
+		//var res = str.split(" ");
+		for( j in APP.cameraList ) {
+			if( str.search(APP.cameraList[j].key) >= 0 ) {
+				//console.log("amazon got it!");
+				for( k in APP.cameras ) {
+					if( APP.cameraList[j].key == APP.cameras[k].key ) {
+						break;
+					}
 				}
-			}
-			break;
-		}					
-	}
-}
+				break;
+			}					
+		}
+	} else if ( cameraMetadata.hasOwnProperty("newegg_product") ) {
 
-APP.getCameraMetatdataCallbackNewegg = function (cameraMetadata) {
-
-	var str;
-	var i,j,k;
-	
-
-	//APP.camera.newegg = cameraMetadata.newegg_product;
-	if( cameraMetadata !== undefined ) {
 		str = cameraMetadata.newegg_product.title;
-	}
-	//console.log(str);
-	// var res = str.split(" ");
-	for( j in APP.cameraList ) {
-		if( str.search(APP.cameraList[j].key) >= 0 ) {
-			// console.log("newegg got it!");
-			for( k in APP.cameras ) {
-				//console.log(APP.cameras[k]);
-				if( APP.cameraList[j].key == APP.cameras[k].key ) {
-					//console.log(APP.cameras[k].name + " got it!");
-					APP.cameras[k].newegg = JSON.parse(JSON.stringify(cameraMetadata.newegg_product));
-					break;
+		//console.log(str);
+		// var res = str.split(" ");
+		for( j in APP.cameraList ) {
+			if( str.search(APP.cameraList[j].key) >= 0 ) {
+				// console.log("newegg got it!");
+				for( k in APP.cameras ) {
+					//console.log(APP.cameras[k]);
+					if( APP.cameraList[j].key == APP.cameras[k].key ) {
+						//console.log(APP.cameras[k].name + " got it!");
+						APP.cameras[k].newegg = JSON.parse(JSON.stringify(cameraMetadata.newegg_product));
+						break;
+					}
 				}
-			}
-			break;
-		}					
-	}
-}
-
-APP.getCameraMetatdataCallbackBestbuy = function (cameraMetadata) {
-
-	var str;
-	var i,j,k;
-
-	// console.log("got bestbuy");
-	if( cameraMetadata !== undefined ) {
+				break;
+			}					
+		}
+	} else if ( cameraMetadata.hasOwnProperty("bestbuy_product") ) {
+		
 		str = cameraMetadata.bestbuy_product.title;
-	}
-	//console.log(str);
-	for( j in APP.cameraList ) {
-		if( str.search(APP.cameraList[j].key) >= 0 ) {
-			//console.log(res[i] + " got it!");
-			for( k in APP.cameras ) {
-				//console.log(APP.cameras[k]);
-				if( APP.cameraList[j].key == APP.cameras[k].key ) {
-					//console.log(APP.cameras[k].name + " got it!");
-					APP.cameras[k].bestbuy = cameraMetadata.bestbuy_product;
-					break;
-				}
-			}
-			break;
-		} 
-		else if( cameraMetadata.bestbuy_product.hasOwnProperty("description")	) {
-			if ( cameraMetadata.bestbuy_product.description.search(APP.cameraList[j].key) >= 0 ) {
+		//console.log(str);
+		for( j in APP.cameraList ) {
+			if( str.search(APP.cameraList[j].key) >= 0 ) {
+				//console.log(res[i] + " got it!");
 				for( k in APP.cameras ) {
 					//console.log(APP.cameras[k]);
 					if( APP.cameraList[j].key == APP.cameras[k].key ) {
@@ -344,11 +204,25 @@ APP.getCameraMetatdataCallbackBestbuy = function (cameraMetadata) {
 					}
 				}
 				break;
+			} 
+			else if( cameraMetadata.bestbuy_product.hasOwnProperty("description")	) {
+				if ( cameraMetadata.bestbuy_product.description.search(APP.cameraList[j].key) >= 0 ) {
+					for( k in APP.cameras ) {
+						//console.log(APP.cameras[k]);
+						if( APP.cameraList[j].key == APP.cameras[k].key ) {
+							//console.log(APP.cameras[k].name + " got it!");
+							APP.cameras[k].bestbuy = JSON.parse(JSON.stringify(cameraMetadata.bestbuy_product));
+							break;
+						}
+					}
+					break;
+				}
 			}
 		}
 	}
+	//check the
+	APP.cameras[k].checkStatus();
 }
-
 
 APP.getMetadata = function (url, callback) {
 	var serviceURL = APP.semanticServiceUrl + "metadata.jsonp?callback=" + callback + "&url=" + encodeURIComponent(url);

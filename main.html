@@ -8,10 +8,9 @@
 	<link rel="stylesheet" type="text/css" href="css/myMICE.css" >
 	
 
-	<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
 	<script type="text/javascript" src="js/controller.js"></script>
 	<script type="text/javascript" src="js/view.js"></script>
-	<!-- // <script type="text/javascript" src="js/controller.js"></script> -->
 	<script type="text/javascript" src="js/model.js"></script>
 	
 	
@@ -28,8 +27,7 @@
 
 	<div class="sidebar">
         <ul>
-            <li><a >SitePoint.com</a></li>
-            <li><a >Revealing CSS3 Menu</a></li>
+        	<li> Buttons </li>
         </ul>
     </div>
 
@@ -42,20 +40,27 @@
 					<li class="nav-item"><a href="#">Find a Deal</a></li>
 				</ul>
 			</div>
-			<div class="categories-container">
-				
-				<div class="list-type-container list-container">
-					<ul id="tag-list-type" class="tag-list">Types</ul>
-				</div>
-				<div class="list-manufacturer-container list-container">	
-					<ul id="tag-list-manufacturer" class="tag-list">Manufacturers</ul>
-				</div>
+			<div class="comparison-container">
+				<div class="comparison-selected-container selected-1"></div>
+				<div class="comparison-selected-container selected-2"></div>
+				<div class="comparison-selected-container selected-3"></div>
+				<input type="button" class="button-in-head gridview-button" value="Gridview">
+				<input type="button" class="button-in-head compare-button" value="Compare">
+				<input type="button" class="button-in-head refresh-button" value="Refresh">
+
+
+			</div>
+			<div class="list-type-container list-container">
+				<ul id="tag-list-type" class="tag-list">Types</ul>
+			</div>
+			<div class="list-manufacturer-container list-container">	
+				<ul id="tag-list-manufacturer" class="tag-list">Manufacturers</ul>
 			</div>
 		</div>
 		
 		<div class="content-container">
 			
-        	<h1>Revealing CSS3 Menu</h1>
+        	<h1>Camera List</h1>
 
         	<div id="camera-container">
        

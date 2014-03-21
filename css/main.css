@@ -28,7 +28,7 @@ p {
 }
 
 .list-container {
-	
+
 	float: right;
 	min-width: 100px;
 	min-height: 100px;
@@ -42,6 +42,7 @@ p {
 
 .tag-list {
 	position: relative;
+	width: 140px;
 	height: 130px;
 	top: 0px;
 	font-weight: bold;
@@ -57,7 +58,12 @@ p {
 	background: gray;
 }
 
-.tag-is-actived {
+.tag-is-actived-manu {
+	font-weight: normal;
+	background: lightblue;
+}
+
+.tag-is-actived-type {
 	font-weight: normal;
 	background: lightblue;
 }
@@ -67,13 +73,9 @@ p {
 	background: gray;
 }
 
-.tag-highlight {
-	background: lightblue;
-}
 .content-container {
 	clear: right;
 }
-
 
 .nav-item {
 	display: inline-block;
@@ -95,33 +97,6 @@ p {
 
 /* Temp */
 
-.cameraVisual {
-	width: 260px;
-	height: 352px;
-	text-align: center;
-	background: white;
-	box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.5);
-	padding: 8px;
-	display: block;
-	overflow: hidden;
-	position: absolute;
-	margin: 100px 8%;
-	
-	-webkit-transition: all 1s;
-}
-
-.cameraVisual h1 {
-	font-size: 16px;
-	white-space: nowrap;
-	text-align: left;
-}
-
-.cameraVisual img {
-	max-width: 100%;
-	max-height: 100%;
-	vertical-align: top;
-}
-
 .miceContainer {
 	display: none;
 }
@@ -142,22 +117,46 @@ p {
 	padding: 8px;
 	overflow: hidden;
 	box-shadow: 1px 1px 4px 0px rgba(0,0,0,0.5);
-	-webkit-transition: all 1s
+	-webkit-transition: all 1s;
+	display: inline-block;
+	text-align: bottom;
+	position: relative;
+	top: 0px;
 }
 
 .camera-grid h1 {
-	font-size: 16px;
+	font-size: 20px;
 	white-space: nowrap;
 	text-align: left;
+	font-weight: bold;
 }
 
 .camera-grid img {
-	max-width: 100%;
-	max-height: 100%;
+	max-width: 260px;
+	max-height: 195px;
+	width: auto;
 	vertical-align: top;
+	position: relative;
+
 }
 
+.camera-is-selected {
+	border: 2px solid red;
+	padding: 7px;
+}
 
+.camera-detail-container {
+	width: 260px;
+}
+
+.camera-detail-table {
+	border: 1px solid black;
+}
+
+.camera-detail-img img {
+	width: 260px;
+	height: auto;
+}
 
 /* Revealing 3D Menu CSS */
 body {
