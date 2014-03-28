@@ -32,10 +32,10 @@ p {
 	float: right;
 	min-width: 100px;
 	min-height: 100px;
-	margin-top: 15px;
-	margin-bottom: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	border-radius: 8px;
-	border: 1px solid white;
+	border: 2px solid white;
 	background-color: #dbdfe1;
 	padding: 8px 8px 8px 8px;
 }
@@ -95,18 +95,119 @@ p {
 
 }
 
-/* Temp */
+/** {
+	border: 1px solid red;
+}*/
 
-.miceContainer {
-	display: none;
+/*quick View*/
+
+.comparison-container {
+	float: left;
 }
 
-.pieContainer {
-	display: none;
+.camera-quick {
+	position: absolute;
+}
+
+.comparison-selected-container {
+	position: relative;
+	top: 0px;
+	margin: 10px 5px 10px 5px;
+	width: 160px;
+	height: 120px;
+	border: 2px solid black;
+	border-radius: 8px;
+	display: inline-block;
+	text-align: center;;
+}
+
+.comparison-selected-container img {
+	width: 150px;
+	height: auto;
+	max-height: 104px;
+	overflow: hidden;
+	border-radius: 8px;
 }
 
 
 /* Body container */
+
+/* Configurations Style */
+
+.configuration-menu-list {
+	font-size: 14px;
+	height: 20px;
+	padding: 2px 2px 2px 16px;
+	font-weight: normal;
+	color: green;
+}
+
+.configuration-menu {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 2px 2px 2px 2px;
+}
+
+.config-is-clicked {
+	color: gray;
+}
+
+.detail-is-hidden {
+	display: none;
+}
+
+/*.configuration-menu:hover {
+	cursor: pointer;
+}*/
+
+/* Table Style*/
+
+.category-bar {
+	text-align: center;
+	width: 100%;
+	background-color: #B2E0FF;
+	font-size: 18px;
+}
+
+.table-row{
+	/*border: 1px solid red;*/
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	
+}
+
+.camera-detail {
+	display: inline-block;
+	height: auto;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	/*border: 1px solid red;*/
+}
+
+.camera-detail-heading {
+	width: 180px;
+	height: 100%;
+	font-family: fantasy;
+	font-weight: bold;	
+}
+
+.camera-detail-content {
+	/*display: inline-block;*/
+	width: 356px;
+	height: auto;
+	font-family: serif;
+	padding-left: 2px;
+}
+
+.camera-detail-table {
+	/*border: 1px solid black;*/
+}
+
+.camera-detail-img img {
+	width: 260px;
+	height: auto;
+}
+
+/* Grid Style*/
 
 .camera-grid {
 	width: 260px;
@@ -145,18 +246,6 @@ p {
 	padding: 7px;
 }
 
-.camera-detail-container {
-	width: 260px;
-}
-
-.camera-detail-table {
-	border: 1px solid black;
-}
-
-.camera-detail-img img {
-	width: 260px;
-	height: auto;
-}
 
 /* Revealing 3D Menu CSS */
 body {
@@ -169,11 +258,10 @@ body {
 }
 
 
-
 /* main page */
 .page-container {
 	position: fixed;
-	width: 87%;
+	width: 88%;
 	left: 0;
 	top: 0;
 	right: 0;
@@ -267,6 +355,7 @@ body {
 	box-shadow: 4px 0 5px rgba(0,0,0,0.2);
 	z-index: 1;
 	cursor: pointer;
+	overflow: scroll;
 }
 
 .sidebar:after {
@@ -281,7 +370,7 @@ body {
 	border-color: transparent transparent transparent #2e3192;
 }
 
-.sidebar ul {
+.sidebar > ul {
 	width: 14em;
 	list-style-type: none;
 	margin: 0;

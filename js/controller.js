@@ -16,85 +16,54 @@ APP.loadingMetadata = function () {
 	}
 	var x 
 	var myTime = setTimeout( function () { 
-		for( i in APP.cameras ) {
-			//console.log(APP.cameras[i].amazon);
-			//console.log(APP.cameras[i].bestbuy);
-			//console.log(APP.cameras[i].newegg);
-		} 
-		APP.display(APP.cameras);
-	},3000);
+		// for( i in APP.cameras ) {
+		// 	// console.log(APP.cameras[i].amazon);
+		// 	// console.log(APP.cameras[i].bestbuy);
+		// 	// console.log(APP.cameras[i].newegg);
+		// 	console.log(APP.cameras[i]);
+		// } 
+		APP.displayGridVisual(APP.cameras);
+	},1000);
 }
 
-function checkForFailedLoad()
-{
-	console.log("Checking for failed loads...");
-	console.log(APP.cameraQueue);
-}
-
-function sortCameras(event)
-{
-	console.log("sorting cameras:");
-	console.log(event);
-	
-	var sortBy = event.target.value;
-	sortCamerasBy(sortBy);
-}
-
-function sortCamerasBy(sortBy)
-{
-	// sort the games by the selection the user chose
-	switch(sortBy)
-	{
-		case "name": 	APP.cameras.sort(function(a, b){
-    								if(a.title < b.title) return -1;
-    								if(a.title > b.title) return 1;
-    								return 0;});
-						break;
-						
-		case "rating": 	APP.cameras.sort(function(a, b){
-    								if(a.rating < b.rating) return -1;
-    								if(a.rating > b.rating) return 1;
-    								return 0;});
-						break;
-	}	
-	
-	redisplayCameras(APP.cameras);
-}
-
-function redisplayCameras(camerasList)
-{
-	// move all games to left
-	var i;
-	for(i in APP.cameras)
-	{
-		APP.cameras[i].visual.style.left = "-10000px";
-	}
-	
-	
-	// re position the games in the display based on the new ordering
-	switch(this.displayType)
-	{
-		case "grid": 	displayAsGrid(camerasList);
-						break;
-						
-		case "list": 	displayAsList(camerasList);
-						break;
-	}
-}
-
-// APP.mataDatIsReady = function () {
-// 	// var deferred = $.Deferred();	
-// 	wait(APP.getCameraMetatdataCallback()) 
-// 	var i,j,k;
-// 	for( i in APP.cameras ) {
-// 		if( APP.cameras[i].amazon !== undefined  ) {
-// 			console.log(APP.caeras[i].amazon);
-// 		}
-// 	}
-
+// function checkForFailedLoad()
+// {
+// 	console.log("Checking for failed loads...");
+// 	console.log(APP.cameraQueue);
 // }
 
-APP.display = function (camerasList) {
+// function sortCameras(event)
+// {
+// 	console.log("sorting cameras:");
+// 	console.log(event);
+	
+// 	var sortBy = event.target.value;
+// 	sortCamerasBy(sortBy);
+// }
+
+// function sortCamerasBy(sortBy)
+// {
+// 	// sort the games by the selection the user chose
+// 	switch(sortBy)
+// 	{
+// 		case "name": 	APP.cameras.sort(function(a, b){
+//     								if(a.title < b.title) return -1;
+//     								if(a.title > b.title) return 1;
+//     								return 0;});
+// 						break;
+						
+// 		case "rating": 	APP.cameras.sort(function(a, b){
+//     								if(a.rating < b.rating) return -1;
+//     								if(a.rating > b.rating) return 1;
+//     								return 0;});
+// 						break;
+// 	}	
+	
+// 	redisplayCameras(APP.cameras);
+// }
+
+
+APP.displayGridVisual = function (camerasList) {
 
 	// this.displayType = "grid";
 	var i;
@@ -107,25 +76,26 @@ APP.display = function (camerasList) {
 	}
 }
 
-function updateCamera(cameraMetadata)
-{
-	console.log("this is the metadata:");
-	console.log(cameraMetadata);
-	
-	cameraMetadata = cameraMetadata.amazon_product;
-	
-	// find game from queue
-	var g;
-	for(g in APP.cameraQueue)
-	{
-		if(cameraMetadata.location == APP.cameraQueue[g].location)
-		{
-			APP.cameraQueue[g].updateCamera(cameraMetadata);
-			removeByValue(APP.cameraQueue, APP.cameraQueue[g]);
-			return;
-		}
+APP.displayTableVisual = function (camerasList) {
+
+	// this.displayType = "grid";
+	var i;
+
+	while (APP.mainContainer.firstChild) {
+    	APP.mainContainer.removeChild(APP.mainContainer.firstChild);
 	}
+	var root = document.createElement("div");
+	root = APP.setTableVisual(camerasList);
+
+	APP.configContainer.appendChild(APP.setConfigurations(root));
+	APP.mainContainer.appendChild(root);
+
+
+	// APP.mainContainer = root.cloneNode(true);
+	// APP.mainContainer.appendChild(APP.setTableVisual(camerasList));
+	// APP.configContainer.appendChild(APP.setConfigurations(cameraList));
 }
+
 
 // function search(event)
 // {
@@ -145,6 +115,7 @@ function updateCamera(cameraMetadata)
 // 	redisplayGames(results);
 // }
 
+
 // helpers
 
 
@@ -163,6 +134,7 @@ APP.getCameraMetatdataCallback = function (cameraMetadata) {
 				//console.log("amazon got it!");
 				for( k in APP.cameras ) {
 					if( APP.cameraList[j].key == APP.cameras[k].key ) {
+						APP.cameras[k].amazon = JSON.parse(JSON.stringify(cameraMetadata.amazon_product));
 						break;
 					}
 				}
@@ -236,18 +208,12 @@ APP.doJSONPCall = function (jsonpURL) {
 	script.src = jsonpURL;
 	script.id = jsonpURL;
 
-	if( document.getElementById(jsonpURL) != null ) {
+	if( document.getElementById(jsonpURL) !== null ) {
 		document.getElementById(jsonpURL).remove();
 	}
 	document.head.appendChild(script);
 }
 
-function removeByValue(arr, val)
-{
-    for(var i=0; i<arr.length; i++) {
-        if(arr[i] == val) {
-            arr.splice(i, 1);
-            break;
-        }
-    }
-}
+Element.prototype.hasClass = function(className) {
+    return this.className && new RegExp("(^|\\s)" + className + "(\\s|$)").test(this.className);
+};

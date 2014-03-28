@@ -9,6 +9,7 @@
 	
 
 	<script type="text/javascript" src="js/jquery-1.11.0.js"></script>
+	<script type="text/javascript" src="js/Camera.js"></script>
 	<script type="text/javascript" src="js/controller.js"></script>
 	<script type="text/javascript" src="js/view.js"></script>
 	<script type="text/javascript" src="js/model.js"></script>
@@ -26,8 +27,11 @@
 	
 
 	<div class="sidebar">
+        
         <ul>
-        	<li> Buttons </li>
+        	<h1>Configurations</h1>
+        	<div id="configuration-container">
+        	</div>
         </ul>
     </div>
 
@@ -41,9 +45,9 @@
 				</ul>
 			</div>
 			<div class="comparison-container">
-				<div class="comparison-selected-container selected-1"></div>
-				<div class="comparison-selected-container selected-2"></div>
-				<div class="comparison-selected-container selected-3"></div>
+				<div id="selected-1" class="comparison-selected-container"></div>
+				<div id="selected-2" class="comparison-selected-container"></div>
+				<div id="selected-3" class="comparison-selected-container"></div>
 				<input type="button" class="button-in-head gridview-button" value="Gridview">
 				<input type="button" class="button-in-head compare-button" value="Compare">
 				<input type="button" class="button-in-head refresh-button" value="Refresh">
