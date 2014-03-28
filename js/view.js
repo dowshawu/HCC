@@ -555,40 +555,37 @@ $(document).ready( function() {
 	$(".tag-list").on("click", "li", function() {
 		event.preventDefault();	
 		var cameraGrid = ".camera-grid." + $(this).data("value");
-		if( !$(".tag").hasClass("tag-is-actived-manu") && !$(".tag").hasClass("tag-list-manufacturer") ) {
-			$(".camera-grid").fadeOut("slow");
+		console.log("cameraGrid = " + cameraGrid);
+		if( !$(".tag").hasClass("tag-is-actived-manu") && !$(".tag").hasClass("tag-is-actived-type") ) {
+			$(".camera-grid").removeClass("actived-manu");
+			$(".camera-grid").removeClass("actived-type");
+
 		}
 		if( $(this).data("attribute") === "type" ) {
 			if( $(".tag").hasClass("tag-is-actived-manu") ) {
 				var removeGrid = ".camera-grid.actived-manu" 
-				$(removeGrid).fadeOut("slow");
 				$(removeGrid).removeClass("actived-manu");
 				$(".tag").removeClass("tag-is-actived-manu"); 
 			}
 			if( $(this).hasClass("tag-is-actived-type") ) {
 				$(this).removeClass("tag-is-actived-type");
-				$(cameraGrid).fadeOut("slow");
 				$(cameraGrid).removeClass("actived-type");
 			} else {
 				$(this).addClass("tag-is-actived-type");
 				$(cameraGrid).addClass("actived-type");
-				$(cameraGrid).fadeIn("slow");
 			}
 		} else if( $(this).data("attribute") === "manufacturer" ) {
 			if( $(".tag").hasClass("tag-is-actived-type") ) {
 				var removeGrid = ".camera-grid.actived-type" 
-				$(removeGrid).fadeOut("slow");
 				$(removeGrid).removeClass("actived-type");
 				$(".tag").removeClass("tag-is-actived-type"); 
 			}
 			if( $(this).hasClass("tag-is-actived-manu") ) {
 				$(this).removeClass("tag-is-actived-manu");
-				$(cameraGrid).fadeOut("slow");
-				$(cameraGrid).removeClass("actived-tmanu");
+				$(cameraGrid).removeClass("actived-manu");
 			} else {
 				$(this).addClass("tag-is-actived-manu");
 				$(cameraGrid).addClass("actived-manu");
-				$(cameraGrid).fadeIn("slow");
 			}
 		}
 	});

@@ -184,7 +184,16 @@ p {
 	display: inline-block;
 	text-align: bottom;
 	position: relative;
+	display: none;
 	top: 0px;
+}
+
+.actived-type {
+	display: inline-block;
+}
+
+.actived-manu {
+	display: inline-block;
 }
 
 .camera-grid h1 {
