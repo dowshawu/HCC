@@ -26,43 +26,6 @@ APP.loadingMetadata = function () {
 	},1000);
 }
 
-// function checkForFailedLoad()
-// {
-// 	console.log("Checking for failed loads...");
-// 	console.log(APP.cameraQueue);
-// }
-
-// function sortCameras(event)
-// {
-// 	console.log("sorting cameras:");
-// 	console.log(event);
-	
-// 	var sortBy = event.target.value;
-// 	sortCamerasBy(sortBy);
-// }
-
-// function sortCamerasBy(sortBy)
-// {
-// 	// sort the games by the selection the user chose
-// 	switch(sortBy)
-// 	{
-// 		case "name": 	APP.cameras.sort(function(a, b){
-//     								if(a.title < b.title) return -1;
-//     								if(a.title > b.title) return 1;
-//     								return 0;});
-// 						break;
-						
-// 		case "rating": 	APP.cameras.sort(function(a, b){
-//     								if(a.rating < b.rating) return -1;
-//     								if(a.rating > b.rating) return 1;
-//     								return 0;});
-// 						break;
-// 	}	
-	
-// 	redisplayCameras(APP.cameras);
-// }
-
-
 APP.displayGridVisual = function (camerasList) {
 
 	// this.displayType = "grid";
@@ -95,29 +58,6 @@ APP.displayTableVisual = function (camerasList) {
 	// APP.mainContainer.appendChild(APP.setTableVisual(camerasList));
 	// APP.configContainer.appendChild(APP.setConfigurations(cameraList));
 }
-
-
-// function search(event)
-// {
-// 	console.log("seraching games..");
-	
-// 	var searchBy = event.target.value;
-// 	console.log(searchBy);
-	
-// 	var results =[];
-	
-// 	for(var i = 0; i < games.length; i++)
-// 	{
-// 		if(games[i].title.indexOf(searchBy) != -1)
-// 			results.push(games[i]);
-// 	}
-	
-// 	redisplayGames(results);
-// }
-
-
-// helpers
-
 
 APP.getCameraMetatdataCallback = function (cameraMetadata) {
 

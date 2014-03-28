@@ -95,10 +95,6 @@ p {
 
 }
 
-/** {
-	border: 1px solid red;
-}*/
-
 /*quick View*/
 
 .comparison-container {
@@ -129,37 +125,7 @@ p {
 	border-radius: 8px;
 }
 
-
 /* Body container */
-
-/* Configurations Style */
-
-.configuration-menu-list {
-	font-size: 14px;
-	height: 20px;
-	padding: 2px 2px 2px 16px;
-	font-weight: normal;
-	color: green;
-}
-
-.configuration-menu {
-	font-size: 16px;
-	font-weight: bold;
-	padding: 2px 2px 2px 2px;
-}
-
-.config-is-clicked {
-	color: gray;
-}
-
-.detail-is-hidden {
-	display: none;
-}
-
-/*.configuration-menu:hover {
-	cursor: pointer;
-}*/
-
 /* Table Style*/
 
 .category-bar {
@@ -196,10 +162,6 @@ p {
 	height: auto;
 	font-family: serif;
 	padding-left: 2px;
-}
-
-.camera-detail-table {
-	/*border: 1px solid black;*/
 }
 
 .camera-detail-img img {
@@ -246,8 +208,34 @@ p {
 	padding: 7px;
 }
 
+/* sideBar */
+/* Configurations Style */
+
+.configuration-menu-list {
+	font-size: 14px;
+	height: 20px;
+	padding: 2px 2px 2px 16px;
+	font-weight: normal;
+	color: green;
+}
+
+.configuration-menu {
+	font-size: 16px;
+	font-weight: bold;
+	padding: 2px 2px 2px 2px;
+}
+
+.config-is-clicked {
+	color: gray;
+}
+
+.detail-is-hidden {
+	display: none;
+}
+
 
 /* Revealing 3D Menu CSS */
+
 body {
 	font-family: sans-serif;
 	font-size: 100%;
@@ -302,6 +290,7 @@ body {
 }
 
 /* sliding sidebar menu style */
+
 
 .sidebar:hover {
 	left: 0;
